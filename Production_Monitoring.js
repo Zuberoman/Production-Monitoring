@@ -6,7 +6,6 @@ var Arkusz_wynik1 = SpreadsheetApp.getActiveSpreadsheet();
 
 function zliczanie(){
 
-22
 // -- Wyliczenie ile kolumn jest wypełnionych - referencje -- //
 
  var ilosc_kolumn1 = Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(7,10,1,Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastColumn()).getDisplayValues();
@@ -24,18 +23,14 @@ function zliczanie(){
 
  var zakres_stator1 =  Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,10, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(), ilosc_k1.length).getDisplayValues();
  var zakres_stator2 =  Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,2, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(), 1).getDisplayValues();
- //var kolor1 = Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,2, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(), 1).getBackgrounds();
  var znak1 = Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,1, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(), 1).getValues();
  var zakres_opisu1 = Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,2, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(),1).getDisplayValues();
 
 // --- Zliczanie wyniku --- //
 
-
-
 var wynik1 = [];
 var referencja = [];
 var opis = [];
-
 
 for(var x=0; x<ilosc_k1.length; x++){
         var ref1 = ilosc_kolumn1[0][x];
@@ -48,21 +43,15 @@ for(var x=0; x<ilosc_k1.length; x++){
                               if(zakres_opisu1[y] == opis1  && (wartosc1 !== "NOK") && wartosc2==''){
                                  wynik1.push(wartosc1);
                                  referencja.push(ref1);
-                                 opis.push(opis1);
-                                 
+                                 opis.push(opis1);                                 
                               }
-                       } 
-                      
+                       }                       
               }
 }
 
-
-
-
-Call = zapis_w_arkuszu(wynik1, referencja, opis);
+         Call = zapis_w_arkuszu(wynik1, referencja, opis);
 
 }
-
 function zapis_w_arkuszu(wynik1, referencja, opis){
 
  // --- stworzenie listy referencji - usunięcie duplikatów --- //
@@ -71,11 +60,8 @@ function zapis_w_arkuszu(wynik1, referencja, opis){
    var proces = [];
 
    for(var x=0; x<referencja.length; x++){
-    //if(referencja[x] != referencja[x+1] && opis[x] != opis[x+1]){
-     // lista_referencji.push('\n');
       lista_referencji.push(referencja[x]);
       proces.push(opis[x]);
-   // }
    }
    
    // --- Pobranie zdefiniowanej listy i podliczenie OK --- //
@@ -99,9 +85,7 @@ function zapis_w_arkuszu(wynik1, referencja, opis){
    for(var i=0; i<referencja_sprawdzona.length; i++){
     Arkusz_wynik1.getSheetByName("xMG STATOR proto2 DVPV parts").appendRow([referencja_sprawdzona[i][0], referencja_sprawdzona[i][1], referencja_sprawdzona[i][2]]);
 
-   }
-
-  
+   }  
 }
 
 function zliczanie_v2(){
@@ -133,7 +117,6 @@ for(var i=0; i<zakres.length; i++){
    }
 }
 
-
 // --- Proces przeszukiwania --- //
 
 var lista = [];
@@ -151,8 +134,6 @@ for(var x=0; x<ilosc_k1.length; x++){ // kolumny
    }
 }
 
-
-
 // -- Usunięcie starych danych -- //
 
 var wyniki = Arkusz_wynik1.getSheetByName("xMG STATOR proto2 DVPV parts").getRange(2,1, Arkusz_wynik1.getSheetByName("xMG STATOR proto2 DVPV parts").getLastRow(),8).clearContent();
@@ -162,21 +143,12 @@ var wyniki = Arkusz_wynik1.getSheetByName("xMG STATOR proto2 DVPV parts").getRan
 for(var z=0; z<lista.length; z++){
   if(lista[z][2] === "" && lista[z-1][2] === "OK"){
    Arkusz_wynik1.getSheetByName("xMG STATOR proto2 DVPV parts").appendRow([lista[z][0],lista[z][1],1]);
-  // Arkusz_wynik1.getSheetByName("Monitoring ONLINE - UPDATED").getRange(1,1,50,50).setValue([lista[z][0]]);
   }
 }
 
 }
 
-
-
-
 // Rotor xMG 25 kW proto2
-
-
-
-
-
 
 // @ts-nocheck
 var id_arkusz2 = "*****";
@@ -185,7 +157,6 @@ var Arkusz2 = SpreadsheetApp.openById(id_arkusz2);
 var Arkusz_wynik2 = SpreadsheetApp.getActiveSpreadsheet();
 
 function zliczanie1(){
-
 
 // -- Wyliczenie ile kolumn jest wypełnionych - referencje -- //
 
@@ -204,19 +175,14 @@ function zliczanie1(){
 
  var zakres_rotor1 =  Arkusz2.getSheetByName("xMG25kW - PROTO2 - CAL257").getRange(6,9, Arkusz2.getSheetByName("xMG25kW - PROTO2").getLastRow(), ilosc_k2.length).getDisplayValues();
  var zakres_rotor2 =  Arkusz2.getSheetByName("xMG25kW - PROTO2 - CAL257").getRange(6,2, Arkusz2.getSheetByName("xMG25kW - PROTO2").getLastRow(), 1).getDisplayValues();
- //var kolor1 = Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getRange(8,2, Arkusz1.getSheetByName("Stator PROTO2 (DVPV PARTS)").getLastRow(), 1).getBackgrounds();
  var znak2 = Arkusz2.getSheetByName("xMG25kW - PROTO2 - CAL257").getRange(6,1, Arkusz2.getSheetByName("xMG25kW - PROTO2").getLastRow(), 1).getValues();
  var zakres_opisu2 = Arkusz2.getSheetByName("xMG25kW - PROTO2 - CAL257").getRange(6,2, Arkusz2.getSheetByName("xMG25kW - PROTO2").getLastRow(),1).getDisplayValues();
 
 // --- Zliczanie wyniku --- //
 
-
-
 var wynik2 = [];
 var referencja1 = [];
 var opis2 = [];
-
-// tutaj skończyłem
 
 for(var x=0; x<ilosc_k2.length; x++){
         var ref2 = ilosc_kolumn2[0][x];
@@ -232,16 +198,11 @@ for(var x=0; x<ilosc_k2.length; x++){
                                  opis2.push(opis3);
                                  
                               }
-                       } 
-                      
+                       }                       
               }
 }
 
-
-
-
-Call = zapis_w_arkuszu1(wynik2, referencja1, opis2);
-
+        Call = zapis_w_arkuszu1(wynik2, referencja1, opis2);
 }
 
 function zapis_w_arkuszu1(wynik2, referencja1, opis2){
@@ -252,11 +213,8 @@ function zapis_w_arkuszu1(wynik2, referencja1, opis2){
    var proces1 = [];
 
    for(var x=0; x<referencja1.length; x++){
-    //if(referencja[x] != referencja[x+1] && opis[x] != opis[x+1]){
-     // lista_referencji.push('\n');
       lista_referencji1.push(referencja1[x]);
       proces1.push(opis2[x]);
-   // }
    }
    
    // --- Pobranie zdefiniowanej listy i podliczenie OK --- //
@@ -280,9 +238,7 @@ function zapis_w_arkuszu1(wynik2, referencja1, opis2){
    for(var i=0; i<referencja_sprawdzona1.length; i++){
     Arkusz_wynik2.getSheetByName("xMG ROTOR proto2").appendRow([referencja_sprawdzona1[i][0], referencja_sprawdzona1[i][1], referencja_sprawdzona1[i][2]]);
 
-   }
-
-  
+   }  
 }
 
 function zliczanie_v21(){
@@ -313,8 +269,6 @@ for(var i=0; i<zakres1.length; i++){
       szukam1.push(zakres1[i][1]);
    }
 }
-
-
 // --- Proces przeszukiwania --- //
 
 var lista1 = [];
@@ -331,8 +285,6 @@ for(var x=0; x<ilosc_k2.length; x++){ // kolumny
      }
    }
 }
-
-
 
 // -- Usunięcie starych danych -- //
 
